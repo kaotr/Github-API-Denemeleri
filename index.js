@@ -1,12 +1,12 @@
 const searchGithub = async () => {
-    const username = document.getElementById("searchInput").value;
-    const response = await fetch(`https://api.github.com/users/${username}`);
-    const detailsContainer = document.querySelector(".details");
-    const data = await response.json();
-  
-    if (response.ok) {
-      detailsContainer.style.display = "flex";
-      document.getElementById("result").innerHTML = `
+  const username = document.getElementById("searchInput").value;
+  const response = await fetch(`https://api.github.com/users/${username}`);
+  const detailsContainer = document.querySelector(".details");
+  const data = await response.json();
+
+  if (response.ok) {
+    detailsContainer.style.display = "flex";
+    document.getElementById("result").innerHTML = `
         <div class="profile">
           <div class="profile-image">
             <img src="${data.avatar_url}" />
@@ -39,17 +39,20 @@ const searchGithub = async () => {
                 <span class="media-value">${data.blog || "Not Available"}</span>
               </p>
               <p>
-                <span class="media-value">${data.twitter_username || "Not Available"}</span>
+                <span class="media-value">${
+                  data.twitter_username || "Not Available"
+                }</span>
               </p>
               <p>
-                <span class="media-value">${data.company || "Not Available"}</span>
+                <span class="media-value">${
+                  data.company || "Not Available"
+                }</span>
               </p>
             </div>
           </div>
         </div>
       `;
-    } else {
-      alert(data.message);
-    }
-  };
-  
+  } else {
+    alert(data.message);
+  }
+};
